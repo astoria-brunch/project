@@ -14,9 +14,21 @@ app.use(bodyParser.json());
 
 app.get('/brunch', async (req, res, next) => {
   try {
-    const brunch = await axios.get('https://pokeapi.co/api/v2/pokemon/ditto/');
-    console.log('pokemon data', brunch);
-    res.send();
+    // const brunch = await axios.get('https://pokeapi.co/api/v2/pokemon/ditto/');
+    // console.log('pokemon data', brunch);
+    const APIKey =
+      'Bearer ' +
+      'FyzJFB01i42g9yLpWYqY9rxMjmHeRH3Nz_5jXamI1CvVAZDVx-MjcXwzHSdxBkcgfrXphznltrGah2jKuoNrennGHbva6pTdEItKZFJcbVso9JyY2f1tOUpZ7BYdXXYx';
+    const response = await axios.get(
+      'https://api.yelp.com/v3/businesses/search?location=astoria&categories=breakfast_brunch',
+      {
+        headers: {
+          Authorization: APIKey,
+        },
+      }
+    );
+    console.log('data', response.data);
+    res.json(response.data);
   } catch (error) {
     next(error);
   }
