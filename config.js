@@ -1,0 +1,3 @@
+const config = {
+  API: 'placeholder',
+};
