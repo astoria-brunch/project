@@ -12,10 +12,9 @@ app.use(bodyParser.json());
 
 // basic route set up
 
+// temp brunch data route * need to move APIKey to env var so that heroku allows access
 app.get('/brunch', async (req, res, next) => {
   try {
-    // const brunch = await axios.get('https://pokeapi.co/api/v2/pokemon/ditto/');
-    // console.log('pokemon data', brunch);
     const APIKey =
       'Bearer ' +
       'FyzJFB01i42g9yLpWYqY9rxMjmHeRH3Nz_5jXamI1CvVAZDVx-MjcXwzHSdxBkcgfrXphznltrGah2jKuoNrennGHbva6pTdEItKZFJcbVso9JyY2f1tOUpZ7BYdXXYx';
