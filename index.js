@@ -7,7 +7,9 @@ const app = express();
 const $PORT = process.env.PORT || 5000;
 // middlewares
 app.use(express.static(path.join(__dirname, 'client/build')));
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
 app.use(bodyParser.json());
 
 const APIKey =
@@ -19,8 +21,7 @@ const APIKey =
 app.get('/brunch', async (req, res, next) => {
   try {
     const response = await axios.get(
-      'https://api.yelp.com/v3/businesses/search?location=astoria&categories=breakfast_brunch',
-      {
+      'https://api.yelp.com/v3/businesses/search?location=astoria&categories=breakfast_brunch', {
         headers: {
           Authorization: APIKey,
         },
@@ -41,5 +42,5 @@ app.get('*', (req, res) => {
 });
 
 app.listen($PORT, () => {
-  console.log('server is listening at ', $PORT);
+  console.log("server is listening at ", $PORT);
 });
