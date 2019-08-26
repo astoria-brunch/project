@@ -2,7 +2,6 @@ const express = require('express');
 const path = require('path');
 const axios = require('axios');
 const bodyParser = require('body-parser');
-
 const app = express();
 const $PORT = process.env.PORT || 5000;
 // middlewares
@@ -12,14 +11,20 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(bodyParser.json());
 
-const APIKey =
-  'Bearer ' +
-  'FyzJFB01i42g9yLpWYqY9rxMjmHeRH3Nz_5jXamI1CvVAZDVx-MjcXwzHSdxBkcgfrXphznltrGah2jKuoNrennGHbva6pTdEItKZFJcbVso9JyY2f1tOUpZ7BYdXXYx';
-// basic route set up
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config();
+  var APIKey = 'Bearer ' + process.env.YELP_API_KEY;
+  console.log('production', APIKey)
+}
+else {
+  var APIKey = 'Bearer ' + process.env.yelp_api_key;
+}
 
+// basic route set up
 // temp brunch data route * need to move APIKey to env var so that heroku allows access
 app.get('/brunch', async (req, res, next) => {
   try {
+    console.log('process', APIKey)
     const response = await axios.get(
       'https://api.yelp.com/v3/businesses/search?location=astoria&categories=breakfast_brunch', {
         headers: {
