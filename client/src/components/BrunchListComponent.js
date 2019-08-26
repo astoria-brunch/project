@@ -18,7 +18,6 @@ class BrunchListComponent extends React.Component {
     this.setState({
       data: response.data.businesses
     })
-    // console.log('data', this.state.data)
   }
   render() {
     return (

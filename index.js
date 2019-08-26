@@ -14,7 +14,6 @@ app.use(bodyParser.json());
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config();
   var APIKey = 'Bearer ' + process.env.YELP_API_KEY;
-  console.log('production', APIKey)
 }
 else {
   var APIKey = 'Bearer ' + process.env.yelp_api_key;
@@ -24,7 +23,6 @@ else {
 // temp brunch data route * need to move APIKey to env var so that heroku allows access
 app.get('/brunch', async (req, res, next) => {
   try {
-    console.log('process', APIKey)
     const response = await axios.get(
       'https://api.yelp.com/v3/businesses/search?location=astoria&categories=breakfast_brunch', {
         headers: {
