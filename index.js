@@ -30,7 +30,6 @@ app.get('/brunch', async (req, res, next) => {
         },
       }
     );
-    console.log('data', response.data);
     res.json(response.data);
   } catch (error) {
     next(error);
